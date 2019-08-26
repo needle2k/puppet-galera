@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.0.5
+
+### Changes
+* Change `$galera_package_ensure` default from `absent` to `present`
+* Allow `mariabackup` in `$wsrep_sst_method`
+* Add `MariaDB-backup` and `socat` to `$additional_packages` for MariaDB
+
+### Fixes
+* Fix RHEL MariaDB YUM repo URL (#139)
+* Fix README typos and errors (#140)
+
+## 1.0.4
+This is a maintenance release.
+
+### Added
+* Add new RPM GPG key for Percona (#131)
+* Resurrect "xtrabackup-v2" SST method for Percona (#137)
+
+### Fixed
+* Fix MariaDB repo handling (#134)
+* Fix scope and handling of deb_sysmaint_password (#136)
+
 ## 1.0.3
 This is a maintenance release.
 
