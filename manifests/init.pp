@@ -216,6 +216,16 @@ class galera(
     service_name       => $params['mysql_service_name'],
     restart            => $mysql_restart,
   }
+  
+  if (($vendor_type == 'codership') or ($vendor_type == 'mariadb')) {
+    file { '/var/log/mariadb':
+      ensure => 'directory',
+      owner  => 'mysql',
+      group  => 'mysql',
+      require => Class['mysql::server::install'],
+      before => Class['mysql::server::installdb'],
+   }
+  }
 
   file { $rundir:
     ensure  => directory,
