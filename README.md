@@ -74,18 +74,18 @@ Furthermore, a number of simple options are available:
 class { 'galera':
   galera_servers  => ['10.0.99.101', '10.0.99.102'],
   galera_master   => 'node1.example.com',
+  create_root_user => 'true',
   root_password   => 'pa$$w0rd',
+  status_host     => 'localhost',
+  status_user     => 'clustercheck',
   status_password => 'pa$$w0rd',
-
+   
   # Default is 'percona'
   vendor_type     => 'codership',
 
   # This will be used to populate my.cnf values that
   # control where wsrep binds, advertises, and listens
   local_ip => $facts['networking']['ip'],
-
-  # This will be set when the cluster is bootstrapped
-  root_password => 'myrootpassword',
 
   # Disable this if you don't want firewall rules to be set
   configure_firewall => true,
