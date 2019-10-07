@@ -197,7 +197,7 @@ class galera(
     exec { "create ${::root_home}/.my.cnf":
       command => "/bin/echo -e \"${my_cnf}\" > ${::root_home}/.my.cnf",
       onlyif  => [
-        "${mysql_binary} --user=root --password=${root_password} -e 'select count(1);'",
+        "${mysql_binary} --user=root --password='${root_password}' -e 'select count(1);'",
         "/usr/bin/test `/bin/cat ${::root_home}/.my.cnf | ${grep_binary} -c \"password='${root_password}'\"` -eq 0",
         ],
       require => Service['mysqld'],
@@ -208,7 +208,7 @@ class galera(
   class { '::mysql::server':
     package_name       => $params['mysql_package_name'],
     override_options   => $options,
-    root_password      => $root_password,
+    root_password      => '$root_password',
     create_root_my_cnf => $create_root_my_cnf,
     create_root_user   => $create_root_user_real,
     service_enabled    => $service_enabled,
